@@ -1,11 +1,10 @@
-from typing import Any, Tuple
+from typing import Any
 import jax.numpy as jnp
 import flax.linen as nn
 
+from typing import Any, Callable, Optional, Tuple, Type, Sequence, Union
 
 Dtype = Any
-
-from typing import Any, Callable, Optional, Tuple, Type, Sequence, Union
 
 class MlpBlock(nn.Module):
     """

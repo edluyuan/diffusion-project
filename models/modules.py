@@ -1,11 +1,8 @@
-import jax
-import jaxlib
 import jax.numpy as jnp
-import jax.scipy as jsp
 import flax.linen as nn
 
-from nn import MlpBlock
-from embeddings import TimestepEmbedder
+from .nn import MlpBlock
+from .embeddings import TimestepEmbedder
 
 class InfNetwork(nn.Module):
     latent_dim: int
@@ -47,24 +44,24 @@ class RevNetwork(nn.Module):
     hidden_dim: int = 64
     time_dim: int = hidden_dim // 2
     num_layers: int = 3
-    max_timesteps: int = 1000
+    T: int = 1000
 
     @nn.compact
-    def __call__(self, z_t, t, **kwargs):
+    def __call__(self, z_t, T, **kwargs):
 
         batch_size = z_t.shape[0]
         h_t = z_t.reshape((batch_size, -1))
 
-        t_emb = TimestepEmbedder(
+        T_emb = TimestepEmbedder(
             dim=self.time_dim,
-            max_period=self.max_timesteps
-        )(t)
+            max_period=self.T
+        )(T)
 
-        t_emb = MlpBlock(
+        T_emb = MlpBlock(
             output_dim=self.hidden_dim,
             hidden_dim=self.hidden_dim,
             num_layers=3
-        )(t_emb)
+        )(T_emb)
 
         h_t = MlpBlock(
             output_dim=self.hidden_dim,
@@ -72,7 +69,7 @@ class RevNetwork(nn.Module):
             num_layers=3
         )(h_t)
 
-        h_t = h_t + t_emb
+        h_t = h_t + T_emb
 
         z_tm1 = MlpBlock(
             output_dim=self.output_dim,
