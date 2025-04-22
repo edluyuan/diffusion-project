@@ -111,6 +111,7 @@ dependencies = [
     { name = "jaxlib" },
     { name = "matplotlib" },
     { name = "numpy" },
+    { name = "optax" },
     { name = "torch" },
     { name = "tqdm" },
 ]
@@ -123,6 +124,7 @@ requires-dist = [
     { name = "jaxlib", specifier = ">=0.6.0" },
     { name = "matplotlib", specifier = ">=3.10.1" },
     { name = "numpy", specifier = ">=2.2.5" },
+    { name = "optax", specifier = ">=0.2.4" },
     { name = "torch", specifier = ">=2.6.0" },
     { name = "tqdm", specifier = ">=4.67.1" },
 ]

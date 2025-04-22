@@ -12,13 +12,13 @@ class MLP(nn.Module):
     @nn.compact
     def __call__(self, x):
         # First layer: input to hidden
-        x = nn.Dense(features=self.hidden_dim)(x)
-        x = nn.silu(x)
+        h = nn.Dense(features=self.hidden_dim)(x)
+        h = nn.silu(h)
 
         # Hidden layers
         for _ in range(self.num_layers - 1):
-            x = nn.Dense(features=self.hidden_dim)(x)
-            x = nn.silu(x)
+            h = nn.Dense(features=self.hidden_dim)(h)
+            h = nn.silu(h)
 
         # Output layer
-        return nn.Dense(features=self.output_dim)(x)
+        return nn.Dense(features=self.output_dim)(h)
