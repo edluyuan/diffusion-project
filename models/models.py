@@ -10,7 +10,7 @@ from modules import *
 
 _inf_network = InfNetwork(latent_dim=2, hidden_dim=64, num_layers=5)
 _gen_network = GenNetwork(output_dim=2, hidden_dim=64, num_layers=5)
-
+_rev_network = RevNetwork(output_dim=2, hidden_dim=64, num_layers=3)
 
 
 

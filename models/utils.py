@@ -1,12 +1,9 @@
-import jax
-import jaxlib
 import jax.numpy as jnp
-import jax.scipy as jsp
 
 
 def log_gaussian(x, mu, logvar):
     """
-    Computes log probability of a Gaussian: log N(x; mu, exp(logvar))
+    Helper function to computes log probability of a Gaussian: log N(x; mu, exp(logvar))
 
     Args:
         x: JAX array - values to evaluate

@@ -56,13 +56,13 @@ class RevNetwork(nn.Module):
 
         t_emb = SinusoidalEmbedding(dim=self.time_dim)(t)
         t_emb = MLP(
-            output_dim=self.output_dim,
+            output_dim=self.hidden_dim,
             hidden_dim=self.hidden_dim,
             num_layers=3
         )(t_emb)
 
         h_t = MLP(
-            output_dim=self.output_dim,
+            output_dim=self.hidden_dim,
             hidden_dim=self.hidden_dim,
             num_layers=3
         )(z_t)
