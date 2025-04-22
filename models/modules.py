@@ -15,13 +15,13 @@ class InfNetwork(nn.Module):
     @nn.compact
     def __call__(self, x, **kwargs):
         batch_size = x.shape[0]
-        h = x.reshape((batch_size, -1))
+        h_0 = x.reshape((batch_size, -1))
 
         z_0 = MlpBlock(
             output_dim=self.latent_dim,
             hidden_dim=self.hidden_dim,
             num_layers=self.num_layers
-        )(h)
+        )(h_0)
 
         return z_0
 
@@ -74,7 +74,7 @@ class RevNetwork(nn.Module):
 
         h_t = h_t + t_emb
 
-        z_t_minus_1 = MlpBlock(
+        z_tm1 = MlpBlock(
             output_dim=self.output_dim,
             hidden_dim=self.hidden_dim,
             num_layers=self.num_layers
@@ -88,7 +88,7 @@ class RevNetwork(nn.Module):
         # )(h_t)
         # return epsilon
 
-        return z_t_minus_1
+        return z_tm1
 
 
 
