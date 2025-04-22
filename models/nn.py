@@ -1,13 +1,20 @@
+from typing import Any, Tuple
+import jax.numpy as jnp
 import flax.linen as nn
 
 
-class MLP(nn.Module):
+Dtype = Any
+
+from typing import Any, Callable, Optional, Tuple, Type, Sequence, Union
+
+class MlpBlock(nn.Module):
     """
     Multi-layer perceptron with SiLU activations
     """
     output_dim: int
     hidden_dim: int = 64
     num_layers: int = 2
+    dtype: Dtype = jnp.float32
 
     @nn.compact
     def __call__(self, x):

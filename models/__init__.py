@@ -11,7 +11,7 @@ This package contains:
 
 from .models import *
 from .modules import *
-from .nn import MLP as MLP
-from .embeddings import SinusoidalEmbedding
+from .nn import MlpBlock
+from .embeddings import TimestepEmbedder
 from .scheduleders import *
 from .utils import log_gaussian as log_gaussian

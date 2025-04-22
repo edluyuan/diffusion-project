@@ -1,7 +1,7 @@
 import jax.numpy as jnp
 import flax.linen as nn
 
-class SinusoidalEmbedding(nn.Module):
+class TimestepEmbedder(nn.Module):
     """
     Sinusoidal time embedding for reverse models.
     """
@@ -16,7 +16,7 @@ class SinusoidalEmbedding(nn.Module):
         args = t[:, None] * freqs[None, :]
         embedding = jnp.concatenate([jnp.cos(args), jnp.sin(args)], axis=-1)
 
-        # Handle odd dimensions
+        # Handle odd dimensionsper
         if self.dim % 2 == 1:
             embedding = jnp.concatenate([embedding, jnp.zeros_like(embedding[:, :1])], axis=-1)
 
